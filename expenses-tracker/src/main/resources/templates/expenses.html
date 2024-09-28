@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gastos</title>
+</head>
+<body>
+    <h1>Lista de Gastos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descripción</th>
+                <th>Monto</th>
+                <th>Categoría</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="expense : ${expenses}">
+                <td th:text="${expense.id}"></td>
+                <td th:text="${expense.description}"></td>
+                <td th:text="${expense.amount}"></td>
+                <td th:text="${expense.category}"></td>
+                <td>
+                    <a th:href="@{/expenses/edit/{id}(id=${expense.id})}">Editar</a>
+                    <form th:action="@{/expenses/{id}(id=${expense.id})}" method="post" style="display:inline;">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/expenses/new">Agregar nuevo gasto</a>
+</body>
+</html>

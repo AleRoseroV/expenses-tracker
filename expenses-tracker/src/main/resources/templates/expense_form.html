@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Gasto</title>
+</head>
+<body>
+    <h1 th:text="${title}">Formulario de Gasto</h1>
+    <form method="post" th:action="@{${action}}">
+        <input type="hidden" name="_method" th:value="${method}">
+        
+        <label for="description">Descripción:</label>
+        <input type="text" id="description" name="description" th:value="${expense.description}" required>
+        
+        <label for="amount">Monto:</label>
+        <input type="number" id="amount" name="amount" th:value="${expense.amount}" required>
+        
+        <label for="category">Categoría:</label>
+        <input type="text" id="category" name="category" th:value="${expense.category}" required>
+
+        <button type="submit" th:text="${buttonText}">Guardar Gasto</button>
+    </form>
+    <a href="/expenses" th:href="@{/expenses}">Volver a la lista de gastos</a>
+</body>
+</html>
